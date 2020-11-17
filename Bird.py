@@ -1,11 +1,17 @@
 import pygame
+import os
+
+BIRD_IMGS = [pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird1.png"))),
+    pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird2.png"))),
+    pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "bird3.png")))]
 
 class Bird:
     MAX_ROTATION = 25
     ROT_VEL = 20
     ANIMATION_TIME = 5 
 
-    def __init__(self,x,y, imgs):
+    def __init__(self,x,y):
+
         self.x = x 
         self.y = y 
         self.tilt = 0
@@ -13,10 +19,7 @@ class Bird:
         self.vel = 0
         self.height = self.y 
         self.img_count = 0
-        self.imgs = imgs
-        self.img = self.imgs[0]
-
-        
+        self.img = BIRD_IMGS[0]
 
     def jump(self):
         self.vel = -10.5
@@ -58,21 +61,21 @@ class Bird:
         
         # Animation
         if self.img_count < self.ANIMATION_TIME:
-            self.img = self.imgs[0]
+            self.img = BIRD_IMGS[0]
         elif self.img_count < self.ANIMATION_TIME*2:
-            self.img = self.imgs[1]
+            self.img = BIRD_IMGS[1]
         elif self.img_count < self.ANIMATION_TIME*3:
-            self.img = self.imgs[2]
+            self.img = BIRD_IMGS[2]
         elif self.img_count < self.ANIMATION_TIME*4:
-            self.img = self.imgs[1]
+            self.img = BIRD_IMGS[1]
         elif self.img_count < self.ANIMATION_TIME*4 + 1:
-            self.img = self.imgs[0]
+            self.img = BIRD_IMGS[0]
             self.img_count = 0
 
         # Don't flap when going downwards
         # After going upwards again, bird should be flapping
         if self.tilt <= -80:
-            self.img = self.imgs[1]
+            self.img = BIRD_IMGS[1]
             self.img_count = self.ANIMATION_TIME * 2
 
         # Tilt the bird
