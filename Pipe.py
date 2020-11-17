@@ -1,5 +1,6 @@
 import random
 import pygame
+import os
 from Bird import Bird
 
 PIPE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "pipe.png")))
