@@ -6,10 +6,8 @@ BASE_IMG = pygame.transform.scale2x(pygame.image.load(os.path.join("imgs", "base
 class Base:
     WIDTH = BASE_IMG.get_width()
     VEL = 5 
-    IMG = BASE_IMG
 
-
-    def __init__(self, y, img):
+    def __init__(self, y):
         self.y = y 
         self.x1 = 0
         self.x2 = self.WIDTH 
@@ -27,5 +25,5 @@ class Base:
             self.x2 = self.x1 + self.WIDTH
 
     def draw(self, screen):
-        screen.blit(self.IMG, (self.x1, self.y))
-        screen.blit(self.IMG, (self.x2, self.y))
+        screen.blit(BASE_IMG, (self.x1, self.y))
+        screen.blit(BASE_IMG, (self.x2, self.y))
